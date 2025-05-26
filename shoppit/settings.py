@@ -61,7 +61,6 @@ MIDDLEWARE = [
 ]
 
 
-# api/settings.py
 ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
 
@@ -90,8 +89,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'shoppit.wsgi.application'
 
 
 # Database
@@ -135,19 +132,37 @@ USE_I18N = True
 
 USE_TZ = True
 
+# api/settings.py
+WSGI_APPLICATION = 'shoppit.wsgi.app'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+# Ganti bagian STORAGES yang ada di settings.py Anda dengan ini:
+
 STATIC_URL = '/static/'
+MEDIA_URL = '/img/'
+
+# Konfigurasi STORAGES yang lengkap
 STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "OPTIONS": {
+            "location": BASE_DIR / "media",
+            "base_url": "/img/",
+        },
+    },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        "OPTIONS": {
+            "location": BASE_DIR / "staticfiles",
+        },
     },
 }
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
-MEDIA_URL = '/img/'
-MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
