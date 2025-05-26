@@ -58,8 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
+
 
 # api/settings.py
 ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
@@ -139,14 +139,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
 STATIC_ROOT = BASE_DIR / "staticfiles"
-MEDIA_URL = 'img/'
+MEDIA_URL = '/img/'
 MEDIA_ROOT = BASE_DIR/'media'
 
 # Default primary key field type
@@ -166,7 +166,4 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60)
 }
 
-REACT_BASE_URL = os.getenv("REACT_BASE_URL", "https://localhost:5173")
-
-# api/settings.py
-WSGI_APPLICATION = 'api.wsgi.app'
+REACT_BASE_URL = os.getenv("REACT_BASE_URL", "http://localhost:5173")
