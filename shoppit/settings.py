@@ -61,6 +61,9 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
+# api/settings.py
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
@@ -164,3 +167,6 @@ SIMPLE_JWT = {
 }
 
 REACT_BASE_URL = os.getenv("REACT_BASE_URL", "https://localhost:5173")
+
+# api/settings.py
+WSGI_APPLICATION = 'api.wsgi.app'
