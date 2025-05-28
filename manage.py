@@ -21,9 +21,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-# Vercel Python handler
-try:
-    from shoppit.wsgi import application
-    handler = application
-except ImportError:
-    handler = None

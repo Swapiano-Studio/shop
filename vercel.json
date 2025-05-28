@@ -2,12 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "api.py",
+      "src": "shoppit/wsgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "50mb" }
     }
   ],
   "routes": [
+    { "src": "/static/(.*)", "dest": "/static/$1" },
+    { "src": "/img/(.*)", "dest": "/img/$1" },
     { "src": "/(.*)", "dest": "api.py" }
   ]
 }

@@ -31,6 +31,11 @@ SECRET_KEY = 'django-insecure-v0i$od#g#=*^wy3o%-auaawp%5oe^#!i4897oepsf1u=c+6+q2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    '.vercel.app',
+    '.now.sh'
+]
 
 # Application definition
 
@@ -90,6 +95,7 @@ TEMPLATES = [
     },
 ]
 
+WSGI_APPLICATION = 'shoppit.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -133,10 +139,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-# api/settings.py
-WSGI_APPLICATION = 'shoppit.wsgi.app'
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
@@ -162,8 +164,10 @@ STORAGES = {
     },
 }
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_ROOT = BASE_DIR / 'media'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
