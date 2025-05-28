@@ -15,4 +15,4 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'shoppit.settings')
 
 app = get_wsgi_application()
 
-aplication = app
+application = app
