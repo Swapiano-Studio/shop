@@ -1,18 +1,13 @@
 {
-    "builds": [
-        {
-            "src": "shoppit/wsgi.py",
-            "use": "@vercel/python"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/static/(.*)",
-            "dest": "static/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "shoppit/wsgi.py"
-        }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "manage.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "50mb" }
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "manage.py" }
+  ]
 }

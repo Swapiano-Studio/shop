@@ -14,6 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 import os
 from dotenv import load_dotenv
+import dj_database_url
 
 load_dotenv()
 
@@ -34,7 +35,6 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -61,8 +61,8 @@ MIDDLEWARE = [
 ]
 
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
-
+ALLOWED_HOSTS = ["*"]  # Allow all hosts for development; change in production
+CSRF_TRUSTED_ORIGINS = ["http://*.on-acorn.io", "http://*.on-acorn.io"]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
@@ -95,10 +95,11 @@ TEMPLATES = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL', 'postgresql://neondb_owner:npg_FJOSMDN0x9ef@ep-purple-tooth-a1fdrb37-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require'),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
 
